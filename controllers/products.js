@@ -8,7 +8,11 @@ const getAllProductsStatic = async (req, res) => {
     const products = await Product.find({
         // 'i' implies case insensitive
         // name: {$regex: search, $options: 'i'}
-    }).select('name price')
+    })
+    .sort('name')
+    .select('name price')
+    .limit(10)
+    .skip(5)
     //.sort('-name price')
     res.status(200).json({products})
 }
